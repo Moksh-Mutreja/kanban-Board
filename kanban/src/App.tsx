@@ -1,50 +1,13 @@
 import { Card } from "./components/Cards";
-import type { Status } from "./types";
-import { statuses } from "./types";
+import type { Status, Priority,} from "./types";
+import { statuses, priorities ,tasks} from "./types";
 export default function App() {
-  const tasks = [
-    {
-      title: "GO TO gym",
-      id: "_01",
-      points: 5,
-      status: "pending",
-    },
-    {
-      title: "Code for 4 hrs",
-      id: "_02",
-      points: 7,
-      status: "in-progress",
-    },
-    {
-      title: "Read a book",
-      id: "_03",
-      points: 6,
-      status: "done",
-    },
-    {
-      title: "Take a shower",
-      id: "_04",
-      points: 3,
-      status: "done",
-    },
-    {
-      title: "Learn ml",
-      id: "_05",
-      points: 7,
-      status: "pending",
-    },
-    {
-      title: "Go for a walk",
-      id: "_06",
-      points: 4,
-      status: "done",
-    },
-  ];
+
   const Columns = statuses.map((status) => {
-    const tasksColumn = tasks.filter((task) => task.status === status); 
+    const tasksColumn = tasks.filter((task) => task.status === status);
     return {
       status,
-      tasks: tasksColumn, 
+      tasks: tasksColumn,
     };
   });
 
@@ -64,11 +27,12 @@ export default function App() {
                 title={task.title}
                 id={task.id}
                 points={task.points}
+                priority={task.priority as Priority}
               />
             ))}
           </div>
         ))}
-      </div>{" "}
+      </div>
     </>
   );
 }
