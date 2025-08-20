@@ -10,16 +10,38 @@ interface CardProps {
 }
 
 
-export const Card = ({ title, id, points:initialPoints, priority }: CardProps) => {
-
-  const [points, setPoints] = useState(initialPoints||0);
-  const updatePoints = (points:number)=>{
-    if (points < 0 || points >30) return;
-    setPoints(points)
-  }
+export const Card = ({
+  title: initialTitle,
+  id,
+  points: initialPoints,
+  priority,
+}: CardProps) => {
+  const [points, setPoints] = useState(initialPoints || 0);
+  const updatePoints = (points: number) => {
+    if (points < 0 || points > 30) return;
+    setPoints(points);
+  };
+  const [isEditTitle, setIsEditTitle] = useState(false);
+  const [title, setTitle] = useState(initialTitle);
   return (
     <div className="border rounded-lg p-3 m-2  bg-neutral-950 text-white w-auto transition-all duration-200 ease-linear hover:shadow-xl/30 ">
-      <div className="font-mono py-2 text-lg">{title}</div>
+      {isEditTitle ? (
+        <div>
+          <input
+            autoFocus
+            onBlur={() => setIsEditTitle(false)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+      ) : (
+        <div
+          className="font-mono py-2 text-lg cursor-pointer"
+          onClick={() => setIsEditTitle(true)}
+        >
+          {title}
+        </div>
+      )}
       <div className="flex gap-5 justify-between py-3 text-zinc-300 text-sm">
         <div className="flex gap-2">
           <div>{id}</div>
