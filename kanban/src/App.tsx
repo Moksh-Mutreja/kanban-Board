@@ -21,6 +21,7 @@ export default function App() {
               {column.status === "in-progress" && "In-Progress Tasks"}
               {column.status === "done" && "Done Tasks"}
             </h1>
+     
             {column.tasks.map((task) => (
               <Card
                 key={task.id}
