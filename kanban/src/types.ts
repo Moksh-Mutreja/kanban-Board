@@ -1,9 +1,9 @@
 export type Status = "pending" | "done" | "in-progress";
 
-const statuses: Status[] = ["pending", "done", "in-progress"];
+export const statuses: Status[] = ["pending", "done", "in-progress"];
 
 export type Priority = "low" | "medium" | "high";
-const priorities: Priority[] = ["low", "medium", "high"];
+export const priorities: Priority[] = ["low", "medium", "high"];
 
 export interface Task {
   title: string;
@@ -12,7 +12,7 @@ export interface Task {
   status: Status;
   priority: Priority;
 }
-const tasks: Task[] = [
+export const tasks: Task[] = [
   {
     title: "GO TO gym",
     id: "_01",
@@ -56,7 +56,4 @@ const tasks: Task[] = [
     priority: "low",
   },
 ];
-export { tasks };
 
-export { statuses };
-export { priorities };
