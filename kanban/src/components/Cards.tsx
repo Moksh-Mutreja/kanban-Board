@@ -16,15 +16,22 @@ export const Card = ({
   points: initialPoints,
   priority,
 }: CardProps) => {
+
   const [points, setPoints] = useState(initialPoints || 0);
+  const [isEditTitle, setIsEditTitle] = useState(false);
+  const [title, setTitle] = useState(initialTitle);
   const updatePoints = (points: number) => {
     if (points < 0 || points > 30) return;
     setPoints(points);
   };
-  const [isEditTitle, setIsEditTitle] = useState(false);
-  const [title, setTitle] = useState(initialTitle);
+  
+  const handleDragStart = (e: React.DragEvent) => {
+    e.dataTransfer.setData("taskId", id);
+  };
+
   return (
-    <div className="border rounded-lg p-3 m-2  bg-neutral-950 text-white w-auto transition-all duration-200 ease-linear hover:shadow-xl/30 ">
+    <div draggable onDragStart={handleDragStart}
+    className="border rounded-lg p-3 m-2  bg-neutral-950 text-white w-auto transition-all duration-200 ease-linear hover:shadow-xl/30 ">
       {isEditTitle ? (
         <div>
           <input
